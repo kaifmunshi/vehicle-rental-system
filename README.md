@@ -160,6 +160,67 @@ Ensure MongoDB is running before starting the services.
 ```
 - **Outcome:** Updates provider status.
 
+### Analytics Endpoint Documentation
+
+**Endpoint:**
+```
+GET /api/admin/analytics
+```
+
+**Headers:**
+```
+Authorization: Bearer <admin_token>
+```
+
+**Outcome:**
+Returns aggregated statistics related to providers and vehicles.
+
+**Response Format:**
+```json
+{
+  "total_providers": <integer>,
+  "providers": {
+    "approved": <integer>,
+    "pending": <integer>,
+    "rejected": <integer>
+  },
+  "total_vehicles": <integer>,
+  "vehicles": {
+    "two_wheelers": <integer>,
+    "four_wheelers": <integer>
+  }
+}
+```
+
+**Description:**
+- `total_providers`: The total number of providers registered on the platform.
+- `providers.approved`: The number of providers whose accounts have been approved.
+- `providers.pending`: The number of providers whose approval is still pending.
+- `providers.rejected`: The number of providers whose applications have been rejected.
+- `total_vehicles`: The total number of vehicles listed on the platform.
+- `vehicles.two_wheelers`: The count of two-wheeler vehicles.
+- `vehicles.four_wheelers`: The count of four-wheeler vehicles.
+
+**Example Response:**
+```json
+{
+  "total_providers": 100,
+  "providers": {
+    "approved": 80,
+    "pending": 15,
+    "rejected": 5
+  },
+  "total_vehicles": 500,
+  "vehicles": {
+    "two_wheelers": 300,
+    "four_wheelers": 200
+  }
+}
+```
+
+
+
+
 ---
 
 ## 5. Testing the Endpoints with Postman
