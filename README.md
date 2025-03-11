@@ -1,12 +1,12 @@
 # Vehicle Rental System
 
-This repository contains a collection of microservices for a vehicle rental application. The system is structured as a monorepo with three independent modules:
+This repository contains a collection of microservices for a vehicle rental application. The project is structured as a monorepo with three main modules:
 
-- **User Service:** Manages customer registration, login, and profile management.
-- **Admin Service:** Provides an admin interface for logging in, managing provider registration requests, updating provider statuses (approve/reject), and viewing system analytics.
-- **Provider Service:** Enables vehicle rental providers to register (upload legal documents, images, etc.), manage their vehicles, and receive ratings & reviews. Providers must be approved by an admin before they can log in.
+- **User Service:** Manages customer registration, login, and profile functionalities.
+- **Admin Service:** Provides an admin interface for logging in, managing provider registration requests (approve/reject), and viewing system analytics.
+- **Provider Service:** Enables vehicle rental providers to register (upload legal documents and images), manage their vehicles, and receive ratings & reviews. Providers must be approved by an admin before they can log in.
 
-This README will guide you through setting up the development environment, running the project, and testing every endpoint using Postman.
+This document explains the flow of the system and details every API endpoint, including how to test them using Postman.
 
 ---
 
@@ -14,64 +14,50 @@ This README will guide you through setting up the development environment, runni
 
 1. [Project Overview & Architecture](#project-overview--architecture)
 2. [Setup Instructions](#setup-instructions)
-    - [Prerequisites](#prerequisites)
-    - [Installing MongoDB](#installing-mongodb)
-    - [Environment Variables](#environment-variables)
+   - [Prerequisites](#prerequisites)
+   - [Installing MongoDB](#installing-mongodb)
+   - [Environment Variables](#environment-variables)
 3. [Installation & Running the Services](#installation--running-the-services)
 4. [API Endpoints & Usage](#api-endpoints--usage)
-    - [User Service Endpoints](#user-service-endpoints)
-    - [Admin Service Endpoints](#admin-service-endpoints)
-    - [Provider Service Endpoints](#provider-service-endpoints)
-5. [Future Enhancements](#future-enhancements)
+   - [User Service Endpoints](#user-service-endpoints)
+   - [Admin Service Endpoints](#admin-service-endpoints)
+   - [Provider Service Endpoints](#provider-service-endpoints)
+5. [Testing the Endpoints with Postman](#testing-the-endpoints-with-postman)
+6. [Future Enhancements](#future-enhancements)
+7. [Contributing & License](#contributing--license)
 
 ---
 
-## Project Overview & Architecture
+## 1. Project Overview & Architecture
 
-The system is divided into three microservices:
+The system consists of three independent microservices:
 
-### 1. User Service
+### User Service
 - **Purpose:** Manages customer accounts.
-- **Key Endpoints:**
-  - `POST /api/users/register` – Register a new user.
-  - `POST /api/users/login` – User login.
-  - `GET /api/users/profile` – Retrieve the logged-in user's profile (JWT-protected).
+- **Flow:** Users register, log in, and then use a JWT token to access protected endpoints (like retrieving profile details).
 
-### 2. Admin Service
-- **Purpose:** Enables admins to review and manage provider registrations, update provider statuses, and view system analytics.
-- **Key Endpoints:**
-  - `POST /api/admin/login` – Admin login.
-  - `GET /api/admin/providers/pending` – List pending provider requests.
-  - `POST /api/admin/providers/:providerId/status` – Update provider status.
-  - `GET /api/admin/analytics` – Retrieve aggregated statistics.
+### Admin Service
+- **Purpose:** Allows admins to log in, review pending provider registration requests, update provider statuses, and view system-wide analytics.
+- **Flow:** Admin logs in using predefined credentials and can manage provider requests and analytics.
 
-### 3. Provider Service
-- **Purpose:** Allows rental providers to register, upload documents, manage vehicles, and receive reviews.
-- **Key Endpoints:**
-  - `POST /api/provider/register` – Register a new provider.
-  - `POST /api/provider/login` – Provider login.
-  - `POST /api/provider/upload/document` – Upload a legal document.
-  - `POST /api/vehicles` – Add a new vehicle.
-  - `PUT /api/vehicles/:id` – Update vehicle details.
-  - `DELETE /api/vehicles/:id` – Soft delete a vehicle.
-  - `GET /api/reviews/provider/:providerId` – Get provider reviews.
-  - `GET /api/reviews/vehicle/:vehicleId` – Get vehicle reviews.
+### Provider Service
+- **Purpose:** Enables vehicle rental providers to register, log in (if approved), manage vehicles, and receive ratings & reviews.
+- **Flow:** Providers register with a status of "pending." An admin must update their status to "approved" before they can log in.
 
 ---
 
-## Setup Instructions
+## 2. Setup Instructions
 
 ### Prerequisites
-- **Node.js:** Install from [https://nodejs.org/](https://nodejs.org/)
-- **MongoDB:** Install from [https://www.mongodb.com/try/download/community](https://www.mongodb.com/try/download/community)
+- **Node.js:** Download and install from [nodejs.org](https://nodejs.org/) (v14 or later recommended).
+- **MongoDB:** Install from [mongodb.com](https://www.mongodb.com/try/download/community). Optionally, install MongoDB Compass.
 
 ### Installing MongoDB
-1. Download and install MongoDB.
+1. Download & Install MongoDB.
 2. Start MongoDB server.
-3. Optionally, install MongoDB Compass for database management.
 
 ### Environment Variables
-Each service requires its own `.env` file. Example:
+Each service has its own `.env` file:
 
 #### Provider Service `.env`
 ```
@@ -96,10 +82,10 @@ JWT_SECRET=your_jwt_secret_here_user
 
 ---
 
-## Installation & Running the Services
+## 3. Installation & Running the Services
 
 ### Installation
-For each service, run:
+For each service:
 ```bash
 npm install
 ```
@@ -125,79 +111,101 @@ cd provider-service
 npm run dev
 ```
 
+Ensure MongoDB is running before starting the services.
+
 ---
 
-## API Endpoints & Usage
+## 4. API Endpoints & Usage
 
 ### User Service Endpoints
 **User Registration:**
 ```http
 POST /api/users/register
 ```
-```json
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "password123"
-}
-```
 
 **User Login:**
 ```http
 POST /api/users/login
-```
-```json
-{
-  "email": "john@example.com",
-  "password": "password123"
-}
 ```
 
 **User Profile:**
 ```http
 GET /api/users/profile
 ```
-Authorization: Bearer `<user_token>`
 
 ### Admin Service Endpoints
 **Admin Login:**
 ```http
 POST /api/admin/login
 ```
-```json
-{
-  "email": "admin@gmail.com",
-  "password": "12345"
-}
-```
 
 **View Pending Providers:**
 ```http
 GET /api/admin/providers/pending
 ```
-Authorization: Bearer `<admin_token>`
 
 **Update Provider Status:**
 ```http
 POST /api/admin/providers/:providerId/status
-```
-```json
-{
-  "status": "approved"
-}
 ```
 
 **Analytics:**
 ```http
 GET /api/admin/analytics
 ```
-Authorization: Bearer `<admin_token>`
 
 ### Provider Service Endpoints
 **Provider Registration:**
 ```http
 POST /api/provider/register
 ```
+
+**Provider Login:**
+```http
+POST /api/provider/login
+```
+
+**File Upload:**
+```http
+POST /api/provider/upload/document
+```
+
+**Vehicle Management:**
+```http
+POST /api/vehicles
+```
+
+**Update Vehicle:**
+```http
+PUT /api/vehicles/:id
+```
+
+**Soft Delete Vehicle:**
+```http
+DELETE /api/vehicles/:id
+```
+
+**Ratings & Reviews:**
+```http
+POST /api/reviews
+```
+
+---
+
+## 5. Testing the Endpoints with Postman
+
+### General Steps:
+1. Open Postman and create a new request.
+2. Set the HTTP method and URL as per the endpoint details above.
+3. Add necessary headers:
+   - `Content-Type: application/json`
+   - `Authorization: Bearer <token>` for protected endpoints.
+4. Enter the request body in raw JSON (or use form-data for file uploads).
+5. Send the request and verify that the response matches the expected outcome.
+
+### Example: Testing Provider Registration
+**Method:** `POST`
+**URL:** `http://localhost:5002/api/provider/register`
 ```json
 {
   "name": "Provider One",
@@ -211,42 +219,34 @@ POST /api/provider/register
   "document": "http://example.com/document.pdf"
 }
 ```
+**Outcome:** Provider registered with a status of "pending".
 
-**Provider Login:**
-```http
-POST /api/provider/login
+### Example: Testing Admin Update Provider Status
+**Method:** `POST`
+**URL:** `http://localhost:5001/api/admin/providers/<providerId>/status`
+**Headers:**
+```
+Authorization: Bearer <admin_token>
+Content-Type: application/json
 ```
 ```json
 {
-  "email": "provider1@example.com",
-  "password": "secretpass"
+  "status": "approved"
 }
 ```
-
-**File Upload:**
-```http
-POST /api/provider/upload/document
-```
-
-**Vehicle Management:**
-```http
-POST /api/vehicles
-```
-```json
-{
-  "providerId": "<provider_object_id>",
-  "type": "2-wheeler",
-  "name": "Scooter",
-  "price": 150,
-  "quantity": 5
-}
-```
+**Outcome:** Provider's status is updated and the updated provider document is returned.
 
 ---
 
-## Future Enhancements
+## 6. Future Enhancements
 - **Automate provider approval notifications.**
 - **Enhance file handling with cloud storage.**
 - **Implement booking & reservation systems.**
 - **Improve security with HTTPS and rate limiting.**
+
+---
+
+## 7. Contributing & License
+- Feel free to open issues or submit pull requests.
+- Licensed under the MIT License.
 
