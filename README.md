@@ -23,7 +23,6 @@ This README will guide you through setting up the development environment, runni
     - [Admin Service Endpoints](#admin-service-endpoints)
     - [Provider Service Endpoints](#provider-service-endpoints)
 5. [Future Enhancements](#future-enhancements)
-6. [Contributing & License](#contributing--license)
 
 ---
 
