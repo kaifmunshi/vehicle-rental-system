@@ -127,15 +127,14 @@ POST /api/users/register
   "email": "john@example.com",
   "password": "password123"
 }```
+
 **User Login:**
 ```http
 POST /api/users/login
 {
   "email": "john@example.com",
   "password": "password123"
-}
-
-```
+}```
 
 **User Profile:**
 ```http
