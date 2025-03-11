@@ -121,11 +121,20 @@ Ensure MongoDB is running before starting the services.
 **User Registration:**
 ```http
 POST /api/users/register
-```
 
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123"
+}```
 **User Login:**
 ```http
 POST /api/users/login
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
 ```
 
 **User Profile:**
