@@ -19,9 +19,6 @@ This document explains the flow of the system and details every API endpoint, in
    - [Environment Variables](#environment-variables)
 3. [Installation & Running the Services](#installation--running-the-services)
 4. [API Endpoints & Usage](#api-endpoints--usage)
-   - [User Service Endpoints](#user-service-endpoints)
-   - [Admin Service Endpoints](#admin-service-endpoints)
-   - [Provider Service Endpoints](#provider-service-endpoints)
 5. [Testing the Endpoints with Postman](#testing-the-endpoints-with-postman)
 6. [Future Enhancements](#future-enhancements)
 7. [Contributing & License](#contributing--license)
@@ -93,22 +90,10 @@ npm install
 ### Running the Services
 To start each service:
 
-**User Service:**
 ```bash
-cd user-service
-npm run dev
-```
-
-**Admin Service:**
-```bash
-cd admin-service
-npm run dev
-```
-
-**Provider Service:**
-```bash
-cd provider-service
-npm run dev
+cd user-service && npm run dev
+cd ../admin-service && npm run dev
+cd ../provider-service && npm run dev
 ```
 
 Ensure MongoDB is running before starting the services.
@@ -118,85 +103,62 @@ Ensure MongoDB is running before starting the services.
 ## 4. API Endpoints & Usage
 
 ### User Service Endpoints
-**User Registration:**
-```http
-POST /api/users/register
 
+**User Registration:**
+- **URL:** `POST /api/users/register`
+- **Body (JSON):**
+```json
 {
   "name": "John Doe",
   "email": "john@example.com",
   "password": "password123"
-}```
+}
+```
+- **Outcome:** Registers a new user and returns user details.
 
 **User Login:**
-```http
-POST /api/users/login
+- **URL:** `POST /api/users/login`
+- **Body (JSON):**
+```json
 {
   "email": "john@example.com",
   "password": "password123"
-}```
+}
+```
+- **Outcome:** Returns a JWT token.
 
 **User Profile:**
-```http
-GET /api/users/profile
-```
+- **URL:** `GET /api/users/profile`
+- **Outcome:** Returns user details if authenticated.
+
+---
 
 ### Admin Service Endpoints
+
 **Admin Login:**
-```http
-POST /api/admin/login
+- **URL:** `POST /api/admin/login`
+- **Body (JSON):**
+```json
+{
+  "email": "admin@gmail.com",
+  "password": "12345"
+}
 ```
+- **Outcome:** Returns a JWT token for admin.
 
 **View Pending Providers:**
-```http
-GET /api/admin/providers/pending
-```
+- **URL:** `GET /api/admin/providers/pending`
+- **Outcome:** Returns a list of pending provider registrations.
 
 **Update Provider Status:**
-```http
-POST /api/admin/providers/:providerId/status
+- **URL:** `POST /api/admin/providers/:providerId/status`
+- **Body (JSON):**
+```json
+{
+  "status": "approved"
+}
 ```
-
-**Analytics:**
-```http
-GET /api/admin/analytics
-```
-
-### Provider Service Endpoints
-**Provider Registration:**
-```http
-POST /api/provider/register
-```
-
-**Provider Login:**
-```http
-POST /api/provider/login
-```
-
-**File Upload:**
-```http
-POST /api/provider/upload/document
-```
-
-**Vehicle Management:**
-```http
-POST /api/vehicles
-```
-
-**Update Vehicle:**
-```http
-PUT /api/vehicles/:id
-```
-
-**Soft Delete Vehicle:**
-```http
-DELETE /api/vehicles/:id
-```
-
-**Ratings & Reviews:**
-```http
-POST /api/reviews
-```
+- **Outcome:** Updates provider status.
 
 ---
 
@@ -212,8 +174,8 @@ POST /api/reviews
 5. Send the request and verify that the response matches the expected outcome.
 
 ### Example: Testing Provider Registration
-**Method:** `POST`
-**URL:** `http://localhost:5002/api/provider/register`
+- **URL:** `POST http://localhost:5002/api/provider/register`
+- **Body (JSON):**
 ```json
 {
   "name": "Provider One",
@@ -227,34 +189,29 @@ POST /api/reviews
   "document": "http://example.com/document.pdf"
 }
 ```
-**Outcome:** Provider registered with a status of "pending".
+- **Outcome:** Provider registered with a status of "pending".
 
 ### Example: Testing Admin Update Provider Status
-**Method:** `POST`
-**URL:** `http://localhost:5001/api/admin/providers/<providerId>/status`
-**Headers:**
-```
-Authorization: Bearer <admin_token>
-Content-Type: application/json
-```
+- **URL:** `POST http://localhost:5001/api/admin/providers/<providerId>/status`
+- **Body (JSON):**
 ```json
 {
   "status": "approved"
 }
 ```
-**Outcome:** Provider's status is updated and the updated provider document is returned.
+- **Outcome:** Provider's status updated.
 
 ---
 
 ## 6. Future Enhancements
-- **Automate provider approval notifications.**
-- **Enhance file handling with cloud storage.**
-- **Implement booking & reservation systems.**
-- **Improve security with HTTPS and rate limiting.**
+- Automate notifications for provider approvals.
+- Integrate cloud storage for document uploads.
+- Implement booking & reservation system.
+- Improve security with HTTPS and rate limiting.
 
 ---
 
 ## 7. Contributing & License
-- Feel free to open issues or submit pull requests.
+- Open issues or submit pull requests.
 - Licensed under the MIT License.
 
