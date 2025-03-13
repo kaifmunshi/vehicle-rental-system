@@ -20,8 +20,7 @@ This document explains the flow of the system and details every API endpoint, in
 3. [Installation & Running the Services](#installation--running-the-services)
 4. [API Endpoints & Usage](#api-endpoints--usage)
 5. [Testing the Endpoints with Postman](#testing-the-endpoints-with-postman)
-6. [Future Enhancements](#future-enhancements)
-7. [Contributing & License](#contributing--license)
+6. [Contributing & License](#contributing--license)
 
 ---
 
