@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Review = require('../models/Review');
 
 // Add a new review
@@ -15,8 +16,8 @@ exports.addReview = async (req, res) => {
       rating,
       comment,
       reviewedBy,
-      provider,  // Optional: include provider ID if reviewing a provider
-      vehicle,   // Optional: include vehicle ID if reviewing a vehicle
+      provider: provider ? new mongoose.Types.ObjectId(provider) : null,
+      vehicle: vehicle ? new mongoose.Types.ObjectId(vehicle) : null,
     });
 
     await review.save();
@@ -31,7 +32,10 @@ exports.addReview = async (req, res) => {
 exports.getProviderReviews = async (req, res) => {
   try {
     const { providerId } = req.params;
-    const reviews = await Review.find({ provider: providerId });
+    const objectIdProviderId = new mongoose.Types.ObjectId(providerId);
+
+    const reviews = await Review.find({ provider: objectIdProviderId });
+
     res.status(200).json({ message: 'Provider reviews fetched successfully', reviews });
   } catch (error) {
     res.status(500).json({ message: 'Error fetching reviews', error: error.message });
@@ -42,7 +46,10 @@ exports.getProviderReviews = async (req, res) => {
 exports.getVehicleReviews = async (req, res) => {
   try {
     const { vehicleId } = req.params;
-    const reviews = await Review.find({ vehicle: vehicleId });
+    const objectIdVehicleId = new mongoose.Types.ObjectId(vehicleId);
+
+    const reviews = await Review.find({ vehicle: objectIdVehicleId });
+
     res.status(200).json({ message: 'Vehicle reviews fetched successfully', reviews });
   } catch (error) {
     res.status(500).json({ message: 'Error fetching reviews', error: error.message });
@@ -53,16 +60,24 @@ exports.getVehicleReviews = async (req, res) => {
 exports.getAverageRatingForProvider = async (req, res) => {
   try {
     const { providerId } = req.params;
+    const objectIdProviderId = new mongoose.Types.ObjectId(providerId);
+
     const result = await Review.aggregate([
-      { $match: { provider: providerId } },
+      { $match: { provider: objectIdProviderId } }, // Fix: Ensure providerId is an ObjectId
       { $group: {
           _id: '$provider',
           avgRating: { $avg: '$rating' },
           count: { $sum: 1 }
       } }
     ]);
-    res.status(200).json({ message: 'Average rating computed successfully', data: result });
+
+    if (result.length === 0) {
+      return res.status(200).json({ message: 'No reviews found for this provider', data: null });
+    }
+
+    res.status(200).json({ message: 'Average rating computed successfully', data: result[0] });
   } catch (error) {
+    console.error('Error computing average rating:', error);
     res.status(500).json({ message: 'Error computing average rating', error: error.message });
   }
 };

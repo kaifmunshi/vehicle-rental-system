@@ -156,6 +156,7 @@ exports.getVehiclesByPriceRange = async (req, res) => {
   }
 };
 
+
 // Update vehicle quantity
 exports.updateVehicleQuantity = async (req, res) => {
   try {

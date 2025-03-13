@@ -1,42 +1,44 @@
 // provider-service/src/models/Vehicle.js
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const VehicleSchema = new mongoose.Schema(
   {
     provider: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Provider',
+      ref: "Provider",
       required: true,
     },
     type: {
       type: String,
-      enum: ['2-wheeler', '4-wheeler'],
+      enum: ["2-wheeler", "4-wheeler"],
       required: true,
     },
     name: {
       type: String,
-      required: [true, 'Vehicle name is required'],
+      required: [true, "Vehicle name is required"],
       trim: true,
     },
     price: {
       type: Number,
-      required: [true, 'Price is required'],
+      required: [true, "Price is required"],
     },
     quantity: {
       type: Number,
-      default: 1, // For example, how many vehicles of this type are available.
+      default: 1, // Number of available vehicles
     },
-    // Optional: Average rating field for the vehicle.
     averageRating: {
       type: Number,
-      default: 0,
+      default: 0, // Optional rating field
     },
     isDeleted: {
       type: Boolean,
-      default: false,
+      default: false, // Soft delete functionality
     }
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Vehicle', VehicleSchema);
+// Index for optimizing search queries on vehicle name
+VehicleSchema.index({ name: "text" });
+
+module.exports = mongoose.model("Vehicle", VehicleSchema);

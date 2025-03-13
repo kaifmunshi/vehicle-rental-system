@@ -8,7 +8,6 @@ const {
 
 // Import Multer configuration
 const upload = require('../config/upload');
-
 // Existing provider endpoints
 router.post('/register', registerProvider);
 router.post('/login', loginProvider);
