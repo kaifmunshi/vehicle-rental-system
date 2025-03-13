@@ -264,15 +264,8 @@ Returns aggregated statistics related to providers and vehicles.
 
 ---
 
-## 6. Future Enhancements
-- Automate notifications for provider approvals.
-- Integrate cloud storage for document uploads.
-- Implement booking & reservation system.
-- Improve security with HTTPS and rate limiting.
 
----
-
-## 7. Contributing & License
+## 6. Contributing & License
 - Open issues or submit pull requests.
 - Licensed under the MIT License.
 
