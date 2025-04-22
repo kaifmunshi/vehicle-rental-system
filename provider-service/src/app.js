@@ -18,5 +18,12 @@ app.use('/api/vehicles', vehicleRoutes);
 const reviewRoutes = require('./routes/reviewRoutes');
 app.use('/api/reviews', reviewRoutes);
 
+const uploadRoutes = require('./routes/uploadRoutes');
+app.use('/api/provider', uploadRoutes);
 
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  }));
+  app.use(express.json());
 module.exports = app;

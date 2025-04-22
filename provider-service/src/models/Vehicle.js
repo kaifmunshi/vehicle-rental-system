@@ -1,11 +1,10 @@
-// provider-service/src/models/Vehicle.js
 const mongoose = require("mongoose");
 
 const VehicleSchema = new mongoose.Schema(
   {
     provider: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Provider",
+      ref: "Provider", // ✅ Make sure this matches your Provider model name exactly
       required: true,
     },
     type: {
@@ -24,21 +23,21 @@ const VehicleSchema = new mongoose.Schema(
     },
     quantity: {
       type: Number,
-      default: 1, // Number of available vehicles
+      default: 1,
     },
     averageRating: {
       type: Number,
-      default: 0, // Optional rating field
+      default: 0,
     },
     isDeleted: {
       type: Boolean,
-      default: false, // Soft delete functionality
+      default: false,
     }
   },
   { timestamps: true }
 );
 
-// Index for optimizing search queries on vehicle name
+// ✅ Index to enable text-based search on vehicle names
 VehicleSchema.index({ name: "text" });
 
 module.exports = mongoose.model("Vehicle", VehicleSchema);

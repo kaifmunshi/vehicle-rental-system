@@ -1,13 +1,18 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 
-// Middleware to parse JSON request bodies
+// ✅ Always set CORS BEFORE routes or anything else
+app.use(cors({
+  origin: 'http://localhost:3000',
+  credentials: true
+}));
+
+// ✅ Parse JSON bodies
 app.use(express.json());
 
-// Import admin routes
+// ✅ Your routes
 const adminRoutes = require('./routes/adminRoutes');
-
-// Use admin routes (prefix with /api/admin)
 app.use('/api/admin', adminRoutes);
 
 module.exports = app;

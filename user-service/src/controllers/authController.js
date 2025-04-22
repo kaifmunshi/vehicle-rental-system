@@ -1,3 +1,4 @@
+// D:\vehicle-rental-project\user-service\src\controllers\authController.js/
 const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 
@@ -47,13 +48,15 @@ exports.loginUser = async (req, res) => {
     // Find user by email
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+      // Return a field-specific error for email
+      return res.status(401).json({ email: 'Email is incorrect' });
     }
 
     // Validate password
     const isMatch = await user.matchPassword(password);
     if (!isMatch) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+      // Return a field-specific error for password
+      return res.status(401).json({ password: 'Password is incorrect' });
     }
 
     res.status(200).json({

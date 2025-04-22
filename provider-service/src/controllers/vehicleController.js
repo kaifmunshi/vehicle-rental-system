@@ -109,16 +109,19 @@ exports.getVehicleById = async (req, res) => {
   }
 };
 
-// Get vehicles by provider
+// Get vehicles by provider (with full provider info)
 exports.getVehiclesByProvider = async (req, res) => {
   try {
     const { providerId } = req.params;
-    const vehicles = await Vehicle.find({ provider: providerId, isDeleted: false });
+    const vehicles = await Vehicle.find({ provider: providerId })
+      .populate('provider', 'name address city mobile');
+
     res.status(200).json({ message: 'Vehicles fetched successfully', vehicles });
   } catch (error) {
     res.status(500).json({ message: 'Error fetching vehicles', error: error.message });
   }
 };
+
 
 // Get vehicles by type
 exports.getVehiclesByType = async (req, res) => {

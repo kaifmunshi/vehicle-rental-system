@@ -92,3 +92,13 @@ exports.getApprovedProviders = async (req, res) => {
     res.status(500).json({ message: 'Error fetching approved providers', error: error.message });
   }
 };
+
+// Endpoint to Get Rejected Providers
+exports.getRejectedProviders = async (req, res) => {
+  try {
+    const providers = await Provider.find({ status: 'rejected' });
+    res.status(200).json({ message: 'Rejected providers', providers });
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching rejected providers', error: error.message });
+  }
+};
