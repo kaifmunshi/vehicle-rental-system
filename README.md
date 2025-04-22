@@ -308,7 +308,7 @@ Route | Description
 /admin/logout      | Clears session and redirects to login
 
 
-## 7. Contributing & License
+## Contributing & License
 - Open issues or submit pull requests.
 - Licensed under the MIT License.
 
