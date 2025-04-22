@@ -1,0 +1,88 @@
+.admin-login-container {
+    min-height: 100vh;
+    width: 100vw;
+    background-color: #f1f5f9; /* Light, neutral bluish-gray */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', sans-serif;
+    padding: 2rem;
+    box-sizing: border-box;
+  }
+  
+  .admin-login-box {
+    background: linear-gradient(145deg, #ede9fe, #d7fdfe); /* Soft lavender gradient */
+    border-radius: 20px;
+    padding: 3rem 2.5rem;
+    max-width: 430px;
+    width: 100%;
+    box-shadow: 0 15px 40px rgba(102, 51, 153, 0.15); /* soft violet shadow */
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  
+  .admin-login-box:hover {
+    transform: translateY(-4px);
+  }
+  
+  .admin-login-box h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #4b0082; /* Indigo Violet */
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.3px;
+  }
+  
+  .admin-login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  
+  .admin-login-form input {
+    padding: 0.95rem 1.1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    border: 1px solid #d6d3f0;
+    background-color: #ffffff;
+    color: #2f2f3f;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .admin-login-form input::placeholder {
+    color: #9ca3af;
+  }
+  
+  .admin-login-form input:focus {
+    border-color: #a855f7;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.2);
+    outline: none;
+  }
+  
+  .admin-login-form button {
+    background: linear-gradient(to right, #a855f7, #6366f1);
+    padding: 0.95rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .admin-login-form button:hover {
+    background: linear-gradient(to right, #9333ea, #4f46e5);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  }
+  
+  .error-msg {
+    background-color: rgba(255, 0, 0, 0.08);
+    color: #b91c1c;
+    padding: 0.75rem;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: center;
+  }
+  

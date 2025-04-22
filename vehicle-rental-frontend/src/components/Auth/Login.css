@@ -1,0 +1,146 @@
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f1f5f9;
+  padding: 40px 20px;
+  position: relative;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.auth-box {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+  max-width: 900px;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-left {
+  flex: 1;
+  background: linear-gradient(to bottom right, #3b82f6, #2563eb);
+  color: #fff;
+  padding: 50px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-left h2 {
+  font-size: 30px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.auth-left p {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+.auth-right {
+  flex: 1;
+  padding: 50px 40px 40px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #ffffff;
+}
+
+.auth-right h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #2f3e46;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #6c757d;
+  margin-bottom: 20px;
+}
+
+.auth-right input {
+  width: 92%;
+  padding: 10px 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  margin-bottom: 16px;
+  background-color: #f9f9f9;
+  transition: all 0.3s;
+}
+
+.auth-right input:focus {
+  border-color: #3b82f6;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  background-color: #ffffff;
+}
+
+.auth-right button {
+  width: 100%;
+  padding: 10px;
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 5px;
+}
+
+.auth-right button:hover {
+  background-color: #2563eb;
+}
+
+.error-text {
+  color: #d62828;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.footer-text {
+  margin-top: 18px;
+  text-align: center;
+  font-size: 13px;
+  color: #5a5a5a;
+}
+
+.footer-text a {
+  color: #3b82f6;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.footer-text a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .auth-box {
+    flex-direction: column;
+  }
+
+  .auth-left {
+    align-items: center;
+    text-align: center;
+    padding: 30px;
+  }
+
+  .auth-right {
+    padding: 30px 20px;
+  }
+}

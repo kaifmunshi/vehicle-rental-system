@@ -1,0 +1,16 @@
+// src/routes/PrivateRoute.tsx
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+
+interface PrivateRouteProps {
+  children: React.ReactNode;
+}
+
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
+  const token = localStorage.getItem('token');
+  // If there's no token, redirect to login at "/"
+  return token ? <>{children}</> : <Navigate to="/" replace />;
+  
+};
+
+export default PrivateRoute;
