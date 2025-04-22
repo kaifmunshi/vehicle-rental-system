@@ -277,9 +277,9 @@ Returns aggregated statistics related to providers and vehicles.
   - Admin panel with approval flows and analytics (Recharts)
 
 #### To run the frontend: 
-cd vehicle-rental-frontend
-npm install
-npm start
+- cd vehicle-rental-frontend
+- npm install
+- npm start
 
 | Route             | Description                                              |
 |------------------|----------------------------------------------------------|
