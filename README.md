@@ -21,12 +21,12 @@ This document explains the flow of the system and details every API endpoint, in
 3. [Installation & Running the Services](#installation--running-the-services)
 4. [API Endpoints & Usage](#api-endpoints--usage)
 5. [Testing the Endpoints with Postman](#testing-the-endpoints-with-postman)
-6. Frontend integration(#frontend)
+6. 6. [Frontend Integration](#frontend-integration)
 7. [Contributing & License](#contributing--license)
 
 ---
 
-## 1. Project Overview & Architecture
+## Project Overview & Architecture
 
 The system consists of three independent microservices:
 
@@ -44,7 +44,7 @@ The system consists of three independent microservices:
 
 ---
 
-## 2. Setup Instructions
+## Setup Instructions
 
 ### Prerequisites
 - **Node.js:** Download and install from [nodejs.org](https://nodejs.org/) (v14 or later recommended).
@@ -80,7 +80,7 @@ JWT_SECRET=your_jwt_secret_here_user
 
 ---
 
-## 3. Installation & Running the Services
+## Installation & Running the Services
 
 ### Installation
 For each service:
@@ -101,7 +101,7 @@ Ensure MongoDB is running before starting the services.
 
 ---
 
-## 4. API Endpoints & Usage
+## API Endpoints & Usage
 
 ### User Service Endpoints
 
@@ -224,7 +224,7 @@ Returns aggregated statistics related to providers and vehicles.
 
 ---
 
-## 5. Testing the Endpoints with Postman
+## Testing the Endpoints with Postman
 
 ### General Steps:
 1. Open Postman and create a new request.
@@ -264,7 +264,8 @@ Returns aggregated statistics related to providers and vehicles.
 - **Outcome:** Provider's status updated.
 
 ---
-## 6. Frontend
+## Frontend Integration
+
 
 
 **Path:** `vehicle-rental-frontend/`
