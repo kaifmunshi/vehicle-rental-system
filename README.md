@@ -281,31 +281,38 @@ cd vehicle-rental-frontend
 npm install
 npm start
 
-### Route       | Description
-/user/login     | Login form for users
-/user/register  | Registration form for users
-/user/dashboard | User dashboard displaying vehicles from selected city
-/user/review    | Form for submitting vehicle or provider reviews
-/user/logout    | Clears session and redirects to landing page
+| Route             | Description                                              |
+|------------------|----------------------------------------------------------|
+| `/user/login`     | Login form for users                                     |
+| `/user/register`  | Registration form for users                              |
+| `/user/dashboard` | User dashboard displaying vehicles from selected city    |
+| `/user/review`    | Form for submitting vehicle or provider reviews          |
+| `/user/logout`    | Clears session and redirects to landing page             |
 
 
-Route | Description
-/provider/login               | Login form for providers
-/provider/register            | Registration form with image/document upload
-/provider/dashboard           | Dashboard showing all vehicles listed by provider
-/provider/add-vehicle         | Form to add a new vehicle
-/provider/edit-vehicle/:id    | Edit form for existing vehicle (by vehicle ID)
-/provider/restore-vehicle/:id | Restore soft-deleted vehicle (if applicable)
-/provider/logout              | Logout provider and redirect to login page
+
+| Route                       | Description                                                |
+|----------------------------|------------------------------------------------------------|
+| `/provider/login`           | Login form for providers                                   |
+| `/provider/register`        | Registration form with image/document upload               |
+| `/provider/dashboard`       | Dashboard showing all vehicles listed by provider          |
+| `/provider/add-vehicle`     | Form to add a new vehicle                                  |
+| `/provider/edit-vehicle/:id`| Edit form for existing vehicle (by vehicle ID)             |
+| `/provider/restore-vehicle/:id` | Restore soft-deleted vehicle (if applicable)         |
+| `/provider/logout`          | Logout provider and redirect to login page                |
 
 
-Route | Description
-/admin/login       | Login form for main and secondary admins
-/admin/dashboard   | Admin overview dashboard with metrics and quick actions
-/admin/providers   | View, approve, reject, and re-approve provider registrations
-/admin/analytics   | Charts showing vehicle/provider stats via Recharts
-/admin/vehicles    | Overview of all listed vehicles (optional route)
-/admin/logout      | Clears session and redirects to login
+
+| Route               | Description                                                   |
+|---------------------|---------------------------------------------------------------|
+| `/admin/login`       | Login form for main and secondary admins                      |
+| `/admin/dashboard`   | Admin overview dashboard with metrics and quick actions       |
+| `/admin/providers`   | View, approve, reject, and re-approve provider registrations  |
+| `/admin/analytics`   | Charts showing vehicle/provider stats via Recharts            |
+| `/admin/vehicles`    | Overview of all listed vehicles *(optional route)*            |
+| `/admin/logout`      | Clears session and redirects to login                         |
+
+
 
 
 ## Contributing & License
