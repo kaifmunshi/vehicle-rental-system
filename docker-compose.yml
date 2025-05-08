@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  user-service:
+    build: ./user-service
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./user-service/.env.docker
+
+  provider-service:
+    build: ./provider-service
+    ports:
+      - "5002:5002"
+    env_file:
+      - ./provider-service/.env.docker
+
+  admin-service:
+    build: ./admin-service
+    ports:
+      - "5001:5001"
+    env_file:
+      - ./admin-service/.env.docker
+
+  frontend:
+    build: ./vehicle-rental-frontend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./vehicle-rental-frontend/.env.docker
+    stdin_open: true
+    tty: true
+    depends_on:
+      - user-service
+      - provider-service
+      - admin-service
+
