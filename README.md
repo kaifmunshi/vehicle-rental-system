@@ -1,6 +1,7 @@
-# Vehicle Rental System
+# Vehicle Rental System (Backend + Frontend)
 
 This repository contains a collection of microservices for a vehicle rental application. The project is structured as a monorepo with three main modules:
+### Backend
 
 - **User Service:** Manages customer registration, login, and profile functionalities.
 - **Admin Service:** Provides an admin interface for logging in, managing provider registration requests (approve/reject), and viewing system analytics.
@@ -20,11 +21,12 @@ This document explains the flow of the system and details every API endpoint, in
 3. [Installation & Running the Services](#installation--running-the-services)
 4. [API Endpoints & Usage](#api-endpoints--usage)
 5. [Testing the Endpoints with Postman](#testing-the-endpoints-with-postman)
-6. [Contributing & License](#contributing--license)
+6. [Frontend Integration](#frontend-integration)
+7. [Contributing & License](#contributing--license)
 
 ---
 
-## 1. Project Overview & Architecture
+## Project Overview & Architecture
 
 The system consists of three independent microservices:
 
@@ -42,7 +44,7 @@ The system consists of three independent microservices:
 
 ---
 
-## 2. Setup Instructions
+## Setup Instructions
 
 ### Prerequisites
 - **Node.js:** Download and install from [nodejs.org](https://nodejs.org/) (v14 or later recommended).
@@ -78,7 +80,7 @@ JWT_SECRET=your_jwt_secret_here_user
 
 ---
 
-## 3. Installation & Running the Services
+## Installation & Running the Services
 
 ### Installation
 For each service:
@@ -99,7 +101,7 @@ Ensure MongoDB is running before starting the services.
 
 ---
 
-## 4. API Endpoints & Usage
+## API Endpoints & Usage
 
 ### User Service Endpoints
 
@@ -222,7 +224,7 @@ Returns aggregated statistics related to providers and vehicles.
 
 ---
 
-## 5. Testing the Endpoints with Postman
+## Testing the Endpoints with Postman
 
 ### General Steps:
 1. Open Postman and create a new request.
@@ -262,9 +264,58 @@ Returns aggregated statistics related to providers and vehicles.
 - **Outcome:** Provider's status updated.
 
 ---
+## Frontend Integration
 
 
-## 6. Contributing & License
+
+**Path:** `vehicle-rental-frontend/`
+- **Tech Stack:** React + TypeScript + Material UI
+- **Functionality:**
+  - Role-based login (User, Provider, Admin)
+  - User dashboard with city-based vehicle listings and review options
+  - Provider dashboard to manage vehicles (add/edit/delete/restore)
+  - Admin panel with approval flows and analytics (Recharts)
+
+#### To run the frontend: 
+- cd vehicle-rental-frontend
+- npm install
+- npm start
+
+| Route             | Description                                              |
+|------------------|----------------------------------------------------------|
+| `/user/login`     | Login form for users                                     |
+| `/user/register`  | Registration form for users                              |
+| `/user/dashboard` | User dashboard displaying vehicles from selected city    |
+| `/user/review`    | Form for submitting vehicle or provider reviews          |
+| `/user/logout`    | Clears session and redirects to landing page             |
+
+
+
+| Route                       | Description                                                |
+|----------------------------|------------------------------------------------------------|
+| `/provider/login`           | Login form for providers                                   |
+| `/provider/register`        | Registration form with image/document upload               |
+| `/provider/dashboard`       | Dashboard showing all vehicles listed by provider          |
+| `/provider/add-vehicle`     | Form to add a new vehicle                                  |
+| `/provider/edit-vehicle/:id`| Edit form for existing vehicle (by vehicle ID)             |
+| `/provider/restore-vehicle/:id` | Restore soft-deleted vehicle (if applicable)         |
+| `/provider/logout`          | Logout provider and redirect to login page                |
+
+
+
+| Route               | Description                                                   |
+|---------------------|---------------------------------------------------------------|
+| `/admin/login`       | Login form for main and secondary admins                      |
+| `/admin/dashboard`   | Admin overview dashboard with metrics and quick actions       |
+| `/admin/providers`   | View, approve, reject, and re-approve provider registrations  |
+| `/admin/analytics`   | Charts showing vehicle/provider stats via Recharts            |
+| `/admin/vehicles`    | Overview of all listed vehicles *(optional route)*            |
+| `/admin/logout`      | Clears session and redirects to login                         |
+
+
+
+
+## Contributing & License
 - Open issues or submit pull requests.
 - Licensed under the MIT License.
 
