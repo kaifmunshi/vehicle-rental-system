@@ -310,7 +310,7 @@ Returns aggregated statistics related to providers and vehicles.
 | `/admin/providers`   | View, approve, reject, and re-approve provider registrations  |
 | `/admin/analytics`   | Charts showing vehicle/provider stats via Recharts            |
 | `/admin/vehicles`    | Overview of all listed vehicles *(optional route)*            |
-| `/admin/logout`      | Clears session and redirects to login                         |
+| `/admin/logout`      | Clears session and redirects to login.                        |
 
 
 
